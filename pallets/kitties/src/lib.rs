@@ -35,7 +35,7 @@ pub mod pallet {
     use frame_support::traits::Randomness;
     use frame_system::pallet_prelude::*;
 
-    #[derive(Encode, Decode, Clone, Default, TypeInfo)]
+    #[derive(Encode, Decode, Clone, Default, TypeInfo, MaxEncodedLen)]
     pub struct Kitty(pub [u8; 16]);
 
     #[pallet::pallet]
@@ -44,9 +44,9 @@ pub mod pallet {
     #[pallet::storage]
     pub type NextKittyId<T> = StorageValue<_, u32, ValueQuery>;
 
-    // #[pallet::storage]
-    // pub type Kitties<T> = StorageMap<_, _, u32, Kitty>;
+    #[pallet::storage]
+    pub type Kitties<T> = StorageMap<_, Blake2_128Concat, u32, Kitty>;
 
-    // #[pallet::storage]
-    // pub type KittyOwner<T: Config> = StorageMap<_, _, u32, T::AccountId>;
+    #[pallet::storage]
+    pub type KittyOwner<T: Config> = StorageMap<_, Twox64Concat, u32, T::AccountId>;
 }

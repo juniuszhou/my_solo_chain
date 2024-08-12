@@ -18,6 +18,7 @@ mod impls {
         }
 
         // breed on kitty based on both paraent kitties
+        #[allow(dead_code)]
         fn breed_kitty(who: &T::AccountId, kitty_1: [u8; 16], kitty_2: [u8; 16]) -> [u8; 16] {
             let selector = Self::random_value(&who);
 

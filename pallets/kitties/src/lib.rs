@@ -41,8 +41,8 @@ pub mod pallet {
     #[pallet::pallet]
     pub struct Pallet<T>(_);
 
-    // #[pallet::storage]
-    // pub type NextKittyId<T> = StorageValue<_, u32, ValueQuery>;
+    #[pallet::storage]
+    pub type NextKittyId<T> = StorageValue<_, u32, ValueQuery>;
 
     // #[pallet::storage]
     // pub type Kitties<T> = StorageMap<_, _, u32, Kitty>;

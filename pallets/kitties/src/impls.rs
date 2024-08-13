@@ -5,8 +5,8 @@ use frame_support::pallet_macros::pallet_section;
 mod impls {
     impl<T: Config> Pallet<T> {
         // get a random 256.
-        pub fn random_value(who: &T::AccountId) -> [u8; 16] {
-            let nonce = frame_system::Pallet::<T>::account_nonce(&who);
+        pub fn random_value(_who: &T::AccountId) -> [u8; 16] {
+            // let nonce = frame_system::Pallet::<T>::account_nonce(&who);
             // let nonce_u32: u32 = nonce as u32;
             // generate a random value based on account and its nonce
             // let nonce_u32: u32 = TryInto::try_into(nonce).ok().expect("nonce is u64; qed");

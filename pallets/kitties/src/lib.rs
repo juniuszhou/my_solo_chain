@@ -47,6 +47,6 @@ pub mod pallet {
     #[pallet::storage]
     pub type Kitties<T> = StorageMap<_, Blake2_128Concat, u32, Kitty>;
 
-    #[pallet::storage]
-    pub type KittyOwner<T: Config> = StorageMap<_, Twox64Concat, u32, T::AccountId>;
+    // #[pallet::storage]
+    // pub type KittyOwner<T: Config> = StorageMap<_, Twox64Concat, u32, T::AccountId>;
 }

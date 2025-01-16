@@ -12,8 +12,8 @@ members = [
 	"node",
 	"pallets/template",
 	"pallets/kitties",
-	"runtime",
-
+	"runtime", 
+	"tests",
 ]
 
 [workspace.lints.rust]

@@ -9,16 +9,8 @@ homepage.workspace = true
 
 [dependencies]
 codec = { workspace = true }
-sp-runtime = { git = "https://github.com/paritytech/polkadot-sdk.git", tag = "polkadot-v1.10.0", default-features = true, features = [
-	"serde",
-] }
+# overwrite the features as true, then we can call methold like AccountId32::from_str defined in std
+sp-runtime = { workspace = true, default-features = true }
 
 [lints]
 workspace = true
-
-# [features]
-# default = ["std"]
-# std = [
-# 	"codec/std",
-# 	"sp-runtime/std",
-# ]

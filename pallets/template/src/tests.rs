@@ -1,3 +1,4 @@
+use crate::pallet;
 use crate::{mock::*, Error, Event, Something};
 use frame_support::{assert_noop, assert_ok};
 
@@ -10,6 +11,9 @@ fn it_works_for_default_value() {
         assert_ok!(TemplateModule::do_something(RuntimeOrigin::signed(1), 42));
         // Read pallet storage and assert an expected result.
         assert_eq!(Something::<Test>::get(), Some(42));
+
+        assert_eq!(pallet::Something::<Test>::get(), Some(42));
+
         // Assert that the correct event was deposited
         System::assert_last_event(
             Event::SomethingStored {

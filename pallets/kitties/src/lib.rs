@@ -1,5 +1,5 @@
 #![cfg_attr(not(feature = "std"), no_std)]
-use frame_support::pallet_macros::import_section;
+use polkadot_sdk::frame_support::pallet_macros::import_section;
 
 #[cfg(test)]
 mod mock;
@@ -19,7 +19,7 @@ mod extrinsics;
 mod hooks;
 mod impls;
 
-pub use pallet::*;
+// pub use pallet::*;
 
 /// Import all sections from different files.
 #[import_section(extrinsics::dispatches)]
@@ -28,12 +28,13 @@ pub use pallet::*;
 #[import_section(config::config)]
 #[import_section(hooks::hooks)]
 #[import_section(impls::impls)]
-#[frame_support::pallet]
+#[polkadot_sdk::frame_support::pallet]
 pub mod pallet {
     use super::*;
-    use frame_support::pallet_prelude::*;
-    use frame_support::traits::Randomness;
-    use frame_system::pallet_prelude::*;
+    use polkadot_sdk::frame_support::pallet_prelude::*;
+    use polkadot_sdk::frame_support::traits::Randomness;
+    use polkadot_sdk::frame_system::pallet_prelude::*;
+    use polkadot_sdk::{frame_benchmarking, frame_support, frame_system};
 
     #[derive(Encode, Decode, Clone, Default, TypeInfo, MaxEncodedLen)]
     pub struct Kitty(pub [u8; 16]);

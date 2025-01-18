@@ -11,9 +11,9 @@ resolver = "2"
 members = [
 	# "node",
 	"pallets/template",
-	# "pallets/kitties",
+	"pallets/kitties",
 	# "runtime", 
-	# "tests",
+	"tests",
 ]
 
 [workspace.lints.rust]

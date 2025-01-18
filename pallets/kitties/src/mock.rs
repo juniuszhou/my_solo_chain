@@ -1,18 +1,18 @@
 use crate as pallet_kitties;
-use frame_support::traits::Hooks;
-use frame_support::{
+use polkadot_sdk::frame_support::traits::Hooks;
+use polkadot_sdk::frame_support::{
     derive_impl,
     traits::{ConstU16, ConstU64},
 };
-use sp_core::H256;
-use sp_runtime::{
+use polkadot_sdk::sp_core::H256;
+use polkadot_sdk::sp_runtime::{
     traits::{BlakeTwo256, IdentityLookup},
     BuildStorage,
 };
 type Block = frame_system::mocking::MockBlock<Test>;
 
 // Configure a mock runtime to test the pallet.
-frame_support::construct_runtime!(
+polkadot_sdk::frame_support::construct_runtime!(
     pub enum Test
     {
         System: frame_system,

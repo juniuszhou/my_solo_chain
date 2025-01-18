@@ -10,7 +10,9 @@ homepage.workspace = true
 [dependencies]
 codec = { workspace = true }
 # overwrite the features as true, then we can call methold like AccountId32::from_str defined in std
-sp-runtime = { workspace = true, default-features = true }
+# sp-runtime = { workspace = true, default-features = true }
+
+polkadot-sdk = {workspace = true, features = ["sp-runtime"] }
 
 [lints]
 workspace = true

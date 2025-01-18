@@ -1,5 +1,7 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
+use polkadot_sdk::{frame_benchmarking, frame_support, frame_system};
+
 // Re-export pallet items so that they can be accessed from the crate namespace.
 pub use pallet::*;
 
@@ -25,9 +27,14 @@ pub use weights::*;
 #[frame_support::pallet]
 pub mod pallet {
     // Import various useful types required by all FRAME pallets.
+
     use super::*;
+    // use frame::prelude::*;
     use frame_support::pallet_prelude::*;
     use frame_system::pallet_prelude::*;
+    // use polkadot_sdk::*;
+
+    // use polkadot_sdk_frame as frame;
 
     // The `Pallet` struct serves as a placeholder to implement traits, methods and dispatchables
     // (`Call`s) in this pallet.
@@ -40,9 +47,12 @@ pub mod pallet {
     /// These types are defined generically and made concrete when the pallet is declared in the
     /// `runtime/src/lib.rs` file of your chain.
     #[pallet::config]
-    pub trait Config: frame_system::Config {
+    pub trait Config: polkadot_sdk::frame_system::Config {
         /// The overarching runtime event type.
-        type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
+        // #[pallet::no_default_bounds]
+        type RuntimeEvent: From<Event<Self>>
+            + IsType<<Self as polkadot_sdk::frame_system::Config>::RuntimeEvent>;
+        // type RuntimeEvent: From<Event<Self>> + IsType<<Self as frame_system::Config>::RuntimeEvent>;
         /// A type representing the weights required by the dispatchables of this pallet.
         type WeightInfo: WeightInfo;
     }

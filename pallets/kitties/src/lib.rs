@@ -19,7 +19,7 @@ mod extrinsics;
 mod hooks;
 mod impls;
 
-// pub use pallet::*;
+pub use pallet::*;
 
 /// Import all sections from different files.
 #[import_section(extrinsics::dispatches)]
@@ -34,7 +34,6 @@ pub mod pallet {
     use polkadot_sdk::frame_support::pallet_prelude::*;
     use polkadot_sdk::frame_support::traits::Randomness;
     use polkadot_sdk::frame_system::pallet_prelude::*;
-    use polkadot_sdk::{frame_benchmarking, frame_support, frame_system};
 
     #[derive(Encode, Decode, Clone, Default, TypeInfo, MaxEncodedLen)]
     pub struct Kitty(pub [u8; 16]);

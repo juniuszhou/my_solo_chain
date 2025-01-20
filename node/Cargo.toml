@@ -21,51 +21,68 @@ targets = ["x86_64-unknown-linux-gnu"]
 clap = { version = "4.5.3", features = ["derive"] }
 futures = { version = "0.3.21", features = ["thread-pool"] }
 serde_json = { workspace = true, default-features = true }
-jsonrpsee = { version = "0.22", features = ["server"] }
+jsonrpsee = { version = "0.24", features = ["server"] }
 
-# substrate client
-sc-cli = { workspace = true }
-sp-core = { workspace = true }
-sc-executor = { workspace = true }
-sc-network = { workspace = true }
-sc-service = { workspace = true }
-sc-telemetry = { workspace = true }
-sc-transaction-pool = { workspace = true }
-sc-transaction-pool-api = { workspace = true }
-sc-offchain = { workspace = true }
-sc-consensus-aura = { workspace = true }
-sp-consensus-aura = { workspace = true }
-sc-consensus = { workspace = true }
-sc-consensus-grandpa = { workspace = true }
-sp-consensus-grandpa = { workspace = true }
-sc-client-api = { workspace = true }
-sc-rpc-api = { workspace = true }
-sc-basic-authorship = { workspace = true }
+polkadot-sdk = { workspace = true, features = ["frame-benchmarking",
+	"frame-benchmarking-cli",
+	"frame-metadata-hash-extension",
+	"frame-system",
+	"frame-system-rpc-runtime-api",
 
-# substrate primitives
-sp-runtime = { workspace = true }
-sp-io = { workspace = true }
-sp-timestamp = { workspace = true }
-sp-inherents = { workspace = true }
-sp-keyring = { workspace = true }
-sp-api = { workspace = true }
-sp-blockchain = { workspace = true }
-sp-block-builder = { workspace = true }
+	"pallet-im-online",
+	"pallet-transaction-payment",
+	"pallet-transaction-payment-rpc",
 
-# frame and pallets
-frame-system = { workspace = true }
-pallet-transaction-payment =  { workspace = true }
-pallet-transaction-payment-rpc = { workspace = true }
-substrate-frame-rpc-system = { workspace = true }
+	"sc-authority-discovery",
+	"sc-basic-authorship",
+	"sc-chain-spec",
+	"sc-cli",
+	"sc-client-api",
+	"sc-consensus",
+	"sc-consensus-babe",
+	"sc-consensus-babe-rpc",
+	"sc-consensus-grandpa",
+	"sc-consensus-grandpa-rpc",
+	"sc-consensus-slots",
+	"sc-executor",
+	"sc-network",
+	"sc-network-sync",
+	"sc-offchain",
+	"sc-rpc",
+	"sc-rpc-api",
+	"sc-rpc-spec-v2",
+	"sc-service",
+	"sc-storage-monitor",
+	"sc-sync-state-rpc",
+	"sc-sysinfo",
+	"sc-telemetry",
+	"sc-transaction-pool",
+	"sc-transaction-pool-api",
 
-# These dependencies are used for runtime benchmarking
-frame-benchmarking-cli = { workspace = true }
+	"sp-api",
+	"sp-authority-discovery",
+	"sp-block-builder",
+	"sp-blockchain",
+	"sp-consensus",
+	"sp-consensus-babe",
+	"sp-consensus-grandpa",
+	"sp-core",
+	"sp-io",
+	"sp-inherents",
+	"sp-keyring",
+	"sp-keystore",
+	"sp-runtime",
+	"sp-timestamp",
+	"sp-transaction-storage-proof",
+
+	"staging-node-inspect",
+	"substrate-frame-rpc-system",
+	"substrate-state-trie-migration-rpc", ] }
+
 
 # Local Dependencies
 solochain-template-runtime = { path = "../runtime" }
 
-# CLI-specific dependencies
-try-runtime-cli =  { workspace = true }
 
 [build-dependencies]
 substrate-build-script-utils = { workspace = true }
@@ -74,18 +91,10 @@ substrate-build-script-utils = { workspace = true }
 default = []
 # Dependencies that are only required if runtime benchmarking should be build.
 runtime-benchmarks = [
-	"frame-benchmarking-cli/runtime-benchmarks",
-	"frame-system/runtime-benchmarks",
-	"sc-service/runtime-benchmarks",
-	"solochain-template-runtime/runtime-benchmarks",
-	"sp-runtime/runtime-benchmarks",
+	"polkadot-sdk/runtime-benchmarks",
 ]
 # Enable features that allow the runtime to be tried and debugged. Name might be subject to change
 # in the near future.
 try-runtime = [
-	"frame-system/try-runtime",
-	"pallet-transaction-payment/try-runtime",
-	"solochain-template-runtime/try-runtime",
-	"sp-runtime/try-runtime",
-	"try-runtime-cli/try-runtime",
+	"polkadot-sdk/try-runtime",
 ]

@@ -3,6 +3,8 @@
 #[cfg(feature = "std")]
 include!(concat!(env!("OUT_DIR"), "/wasm_binary.rs"));
 
+use polkadot_sdk::*;
+
 use pallet_grandpa::AuthorityId as GrandpaId;
 use sp_api::impl_runtime_apis;
 use sp_consensus_aura::sr25519::AuthorityId as AuraId;
@@ -18,7 +20,8 @@ use sp_std::prelude::*;
 use sp_version::NativeVersion;
 use sp_version::RuntimeVersion;
 
-use frame_support::genesis_builder_helper::{build_config, create_default_config};
+// use frame_support::genesis_builder_helper::{build_config, create_default_config};
+
 pub use frame_support::{
     construct_runtime, derive_impl, parameter_types,
     traits::{
@@ -80,11 +83,18 @@ pub mod opaque {
     /// Opaque block identifier type.
     pub type BlockId = generic::BlockId<Block>;
 
-    impl_opaque_keys! {
-        pub struct SessionKeys {
-            pub aura: Aura,
-            pub grandpa: Grandpa,
-        }
+    // impl_opaque_keys! {
+    //     pub struct SessionKeys {
+    //         pub aura: Aura,
+    //         pub grandpa: Grandpa,
+    //     }
+    // }
+}
+
+impl_opaque_keys! {
+    pub struct SessionKeys {
+        pub aura: Aura,
+        pub grandpa: Grandpa,
     }
 }
 
@@ -104,7 +114,7 @@ pub const VERSION: RuntimeVersion = RuntimeVersion {
     impl_version: 1,
     apis: RUNTIME_API_VERSIONS,
     transaction_version: 1,
-    state_version: 1,
+    system_version: 1,
 };
 
 /// This determines the average expected block time that we are targeting.
@@ -226,6 +236,7 @@ impl pallet_balances::Config for Runtime {
     type MaxFreezes = ();
     type RuntimeHoldReason = ();
     type RuntimeFreezeReason = ();
+    type DoneSlashHandler = ();
 }
 
 parameter_types! {
@@ -239,6 +250,7 @@ impl pallet_transaction_payment::Config for Runtime {
     type WeightToFee = IdentityFee<Balance>;
     type LengthToFee = IdentityFee<Balance>;
     type FeeMultiplierUpdate = ConstFeeMultiplier<FeeMultiplier>;
+    type WeightInfo = pallet_transaction_payment::weights::SubstrateWeight<Runtime>;
 }
 
 impl pallet_sudo::Config for Runtime {
@@ -260,7 +272,7 @@ impl pallet_kitties::Config for Runtime {
 
 impl pallet_insecure_randomness_collective_flip::Config for Runtime {}
 // Create the runtime by composing the FRAME pallets that were previously configured.
-#[frame_support::runtime]
+#[polkadot_sdk::frame_support::runtime]
 mod runtime {
     #[runtime::runtime]
     #[runtime::derive(
@@ -438,13 +450,13 @@ impl_runtime_apis! {
 
     impl sp_session::SessionKeys<Block> for Runtime {
         fn generate_session_keys(seed: Option<Vec<u8>>) -> Vec<u8> {
-            opaque::SessionKeys::generate(seed)
+            SessionKeys::generate(seed)
         }
 
         fn decode_session_keys(
             encoded: Vec<u8>,
         ) -> Option<Vec<(Vec<u8>, KeyTypeId)>> {
-            opaque::SessionKeys::decode_into_raw_public_keys(&encoded)
+            SessionKeys::decode_into_raw_public_keys(&encoded)
         }
     }
 
@@ -591,13 +603,13 @@ impl_runtime_apis! {
         }
     }
 
-    impl sp_genesis_builder::GenesisBuilder<Block> for Runtime {
-        fn create_default_config() -> Vec<u8> {
-            create_default_config::<RuntimeGenesisConfig>()
-        }
+    // impl sp_genesis_builder::GenesisBuilder<Block> for Runtime {
+    //     fn create_default_config() -> Vec<u8> {
+    //         create_default_config::<RuntimeGenesisConfig>()
+    //     }
 
-        fn build_config(config: Vec<u8>) -> sp_genesis_builder::Result {
-            build_config::<RuntimeGenesisConfig>(config)
-        }
-    }
+    //     fn build_config(config: Vec<u8>) -> sp_genesis_builder::Result {
+    //         build_config::<RuntimeGenesisConfig>(config)
+    //     }
+    // }
 }

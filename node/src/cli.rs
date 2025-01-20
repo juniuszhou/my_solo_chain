@@ -1,4 +1,5 @@
-use sc_cli::RunCmd;
+use polkadot_sdk::sc_cli;
+use polkadot_sdk::sc_cli::RunCmd;
 
 #[derive(Debug, clap::Parser)]
 pub struct Cli {
@@ -39,7 +40,7 @@ pub enum Subcommand {
 
     /// Sub-commands concerned with benchmarking.
     #[command(subcommand)]
-    Benchmark(frame_benchmarking_cli::BenchmarkCmd),
+    Benchmark(polkadot_sdk::frame_benchmarking_cli::BenchmarkCmd),
 
     /// Try-runtime has migrated to a standalone CLI
     /// (<https://github.com/paritytech/try-runtime-cli>). The subcommand exists as a stub and

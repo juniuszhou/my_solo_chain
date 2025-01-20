@@ -3,6 +3,7 @@
 //! Should only be used for benchmarking as it may break in other contexts.
 
 use crate::service::FullClient;
+use polkadot_sdk::*;
 
 use runtime::{AccountId, Balance, BalancesCall, SystemCall};
 use sc_cli::Result;

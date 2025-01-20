@@ -9,7 +9,7 @@ homepage = "https://paritytech.github.io/polkadot-sdk/master/polkadot_sdk_docs/i
 resolver = "2"
 
 members = [
-	# "node",
+	"node",
 	"pallets/template",
 	"pallets/kitties",
 	"runtime", 
@@ -74,7 +74,7 @@ pallet-template = { path = "../pallets/template", default-features = false }
 pallet-kitties = { path = "../pallets/kitties", default-features = false }
 
 substrate-wasm-builder = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master", default-features = false }
-
+substrate-build-script-utils = { git = "https://github.com/paritytech/polkadot-sdk.git", branch = "master", default-features = false }
 [profile.release]
 # Polkadot runtime requires unwinding.
 panic = "unwind"

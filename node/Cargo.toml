@@ -58,6 +58,7 @@ polkadot-sdk = { workspace = true, features = ["frame-benchmarking",
 	"sc-telemetry",
 	"sc-transaction-pool",
 	"sc-transaction-pool-api",
+	"sc-consensus-aura",
 
 	"sp-api",
 	"sp-authority-discovery",

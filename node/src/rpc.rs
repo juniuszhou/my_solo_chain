@@ -5,14 +5,14 @@
 
 #![warn(missing_docs)]
 
-use std::sync::Arc;
-
 use jsonrpsee::RpcModule;
+use polkadot_sdk::*;
 use sc_transaction_pool_api::TransactionPool;
 use solochain_template_runtime::{opaque::Block, AccountId, Balance, Nonce};
 use sp_api::ProvideRuntimeApi;
 use sp_block_builder::BlockBuilder;
 use sp_blockchain::{Error as BlockChainError, HeaderBackend, HeaderMetadata};
+use std::sync::Arc;
 
 pub use sc_rpc_api::DenyUnsafe;
 
@@ -49,7 +49,7 @@ where
         deny_unsafe,
     } = deps;
 
-    module.merge(System::new(client.clone(), pool, deny_unsafe).into_rpc())?;
+    module.merge(System::new(client.clone(), pool).into_rpc())?;
     module.merge(TransactionPayment::new(client).into_rpc())?;
 
     // Extend this RPC with a custom API by using the following syntax.

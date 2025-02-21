@@ -1,6 +1,6 @@
 #![cfg_attr(not(feature = "std"), no_std)]
 
-use polkadot_sdk::{frame_benchmarking, frame_support, frame_system};
+use polkadot_sdk::{frame_support, frame_system};
 
 // Re-export pallet items so that they can be accessed from the crate namespace.
 pub use pallet::*;

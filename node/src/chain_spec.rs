@@ -17,7 +17,6 @@ use polkadot_sdk::*;
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 
-use polkadot_sdk::*;
 use sc_service::ChainType;
 use solochain_template_runtime::WASM_BINARY;
 

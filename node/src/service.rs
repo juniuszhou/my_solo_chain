@@ -266,7 +266,6 @@ pub fn new_full<
             let deps = crate::rpc::FullDeps {
                 client: client.clone(),
                 pool: pool.clone(),
-                deny_unsafe: sc_rpc::DenyUnsafe::Yes,
             };
             crate::rpc::create_full(deps).map_err(Into::into)
         })

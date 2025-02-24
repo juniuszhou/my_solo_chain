@@ -32,7 +32,6 @@ polkadot-sdk = { workspace = true, features = ["frame-benchmarking",
 	"pallet-im-online",
 	"pallet-transaction-payment",
 	"pallet-transaction-payment-rpc",
-
 	"sc-authority-discovery",
 	"sc-basic-authorship",
 	"sc-chain-spec",

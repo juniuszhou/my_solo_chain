@@ -32,6 +32,7 @@ polkadot-sdk = { workspace = true, features = [
 		"pallet-timestamp",
 		"pallet-transaction-payment",
 		"pallet-grandpa",
+		"pallet-revive",
 		"sp-std",
 		"sp-consensus-aura",
 		"sp-core",
@@ -65,9 +66,7 @@ default = ["std"]
 std = [
 	"codec/std",
 	"scale-info/std",
-	
 	"pallet-kitties/std",
-	
 	"pallet-template/std",
 	"polkadot-sdk/std",
 	"substrate-wasm-builder",
